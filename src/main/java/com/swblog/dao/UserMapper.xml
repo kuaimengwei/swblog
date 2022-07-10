@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.swblog.dao.UserMapper">
+
+
+    <!--增加一个User-->
+    <insert id="addUser" parameterType="User">
+        insert into swblog.user(uname,pwd,nicheng,touxiang)
+        values ( #{uname}, #{pwd} ,#{nicheng},"static/img/v1.ico");
+    </insert>
+
+
+    <!--更新User-->
+    <update id="updateUser" parameterType="User">
+        update swblog.user
+        set nicheng = #{nicheng}, email = #{email}, haoma = #{haoma}, aihao = #{aihao}
+        where uid = #{uid}
+    </update>
+
+    <!--根据id查询,返回一个User-->
+    <!-- select * from `user` join post on `user`.uid = post.uid where `user`.uid= #{uid} -->
+    <select id="queryUserById" parameterType="int" resultType="Hunhe">
+        select * from swblog.user
+        where uid = #{uid}
+    </select>
+
+    <!--查询User-->
+    <select id="findUser" parameterType="User" resultType="user">
+        SELECT * from user where uname=#{uname} and pwd=#{pwd};
+    </select>
+
+</mapper>
+
+

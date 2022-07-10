@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.swblog.dao.PostMapper">
+
+
+    <!-- 增加一个Post -->
+    <insert id="addPost" parameterType="Post">
+        insert into swblog.post(uid,nicheng,touxiang,title,content,releaseDate,likeCount,commentCount,pageViews)
+        values (#{uid},#{nicheng},#{touxiang},#{title},#{content},#{releaseDate},0,0,0);
+    </insert>
+
+    <!-- 根据id删除一个Post -->
+    <delete id="deletePostById" parameterType="long">
+        delete from swblog.post
+        where pid = #{pid};
+    </delete>
+
+    <!-- 更新Post -->
+    <update id="updatePost" parameterType="Post">
+        update swblog.post
+        set nicheng = #{nicheng}
+        where
+    </update>
+
+    <!-- 根据id查询,返回一个Post -->
+    <select id="queryPostById" parameterType="Post" resultType="Post">
+        select * from swblog.post where post.pid= #{pid}
+    </select>
+
+    <!-- 查询所有Post -->
+    <select id="queryAllPost" resultType="Post">
+        select * from swblog.post order by pageViews desc ;
+    </select>
+
+</mapper>
+
+
